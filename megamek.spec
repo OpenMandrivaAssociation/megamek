@@ -125,7 +125,6 @@ EOF
 
 cat > megamek.desktop << EOF
 [Desktop Entry]
-Encoding=UTF-8
 Name=MegaMek
 GenericName=A BattleTech engine
 Comment=Play MegaMek
