@@ -1,15 +1,15 @@
 %define gcj_support 1
 
 Name:		megamek
-Version:	0.30.11
-Release:	%mkrel 1.2
+Version:	0.32.2
+Release:	%mkrel 0.0.1
 Epoch:		0
-Summary:	A portable, network-enabled BattleTech engine
+Summary:	Portable, network-enabled BattleTech engine
 
 Group:		Development/Java
 License:	GPL
 URL:		http://megamek.sourceforge.net/
-Source0:	http://ovh.dl.sourceforge.net/megamek/MegaMek-v0.30.11.tar.bz2
+Source0:	http://ovh.dl.sourceforge.net/megamek/MegaMek-v%{version}.zip
 # converted from data/images/misc/megamek-icon.gif
 Source1:	megamek-icon.png
 Patch0:		megamek-directories.patch
@@ -38,7 +38,7 @@ MegaMek is a community effort to implement the Classic BattleTech
 rules in an operating-system-agnostic, network-enabled manner.
 
 %prep
-%setup -q -c -n MegaMek
+%setup -q -n %{name}
 %patch0 -p0
 # remove included binaries and rebuild everything from source
 rm -f MegaMek.exe MegaMek.jar
@@ -65,9 +65,6 @@ pushd src
   rm -rf classes javadoc
   rmdir sources
   rm -f DevelopmentDiary-TinyXML.txt readme.txt gpl.txt
-  %{jar} xf ../lib/collections.jar
-  rm -rf META-INF
-  rm -f ../lib/collections.jar
   find -name \*.class | xargs rm -f
   rm -f ../lib/Ostermiller.jar ../lib/PngEncoder.jar
   rm -f ../lib/TabPanel.jar ../lib/tinyXML07-src.zip
@@ -77,6 +74,7 @@ pushd src
   cp ../l10n/megamek/common/*.properties megamek/common
   cp ../l10n/megamek/common/options/*.properties megamek/common/options
 popd
+find . -name '*.jar'  -print0 | xargs -0 -t rm -r
 find data docs mmconf -name .svn -print0 | xargs -0 rm -rf
 find data docs mmconf -type f -print0 | xargs -0 chmod 644
 find data docs mmconf -type d -print0 | xargs -0 chmod 755
@@ -85,8 +83,8 @@ mv docs/stats.pl .
 
 %build
 pushd src
-  %{javac} `find -name '*.java'`
-  %{jar} cf megamek.jar com gd gnu gov keypoint megamek *.class *.java
+  %{javac} -nowarn -source 1.5 `find -name '*.java'`
+  %{jar} cvf megamek.jar com gd gnu gov keypoint megamek *.class *.java
 popd
 
 cat > megamek.sh << EOF
@@ -111,7 +109,7 @@ fi
 
 # Configuration
 MAIN_CLASS=megamek.MegaMek
-BASE_DIR=/usr/share/megamek
+BASE_DIR=%{_datadir}/megamek
 
 # Set parameters
 set_jvm
@@ -126,14 +124,13 @@ EOF
 cat > megamek.desktop << EOF
 [Desktop Entry]
 Name=MegaMek
-GenericName=A BattleTech engine
+GenericName=BattleTech engine
 Comment=Play MegaMek
 Exec=megamek
-Icon=megamek-icon.png
+Icon=megamek-icon
 Terminal=false
 Type=Application
 Categories=Game;BoardGame;
-Version=%{version}
 EOF
 
 %install
