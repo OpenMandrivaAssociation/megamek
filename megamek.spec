@@ -2,7 +2,7 @@
 
 Name:		megamek
 Version:	0.32.2
-Release:	%mkrel 0.0.2
+Release:	%mkrel 0.0.3
 Epoch:		0
 Summary:	Portable, network-enabled BattleTech engine
 
@@ -23,7 +23,7 @@ BuildRequires:		java-gcj-compat-devel
 BuildRequires:		java-devel
 BuildArch:		noarch
 %endif
-BuildRequires:		jpackage-utils
+BuildRequires:		java-rpmbuild
 Requires(post):		desktop-file-utils
 Requires(postun):	desktop-file-utils
 Requires:		jpackage-utils
