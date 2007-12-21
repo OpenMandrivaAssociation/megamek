@@ -13,6 +13,7 @@ Source0:	http://ovh.dl.sourceforge.net/megamek/MegaMek-v%{version}.zip
 # converted from data/images/misc/megamek-icon.gif
 Source1:	megamek-icon.png
 Patch0:		megamek-directories.patch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:		desktop-file-utils
 BuildRequires:		ImageMagick
