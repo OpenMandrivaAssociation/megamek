@@ -16,7 +16,7 @@ Patch0:		megamek-directories.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:		desktop-file-utils
-BuildRequires:		ImageMagick
+BuildRequires:		imagemagick
 %if %{gcj_support}
 BuildRequires:		java-gcj-compat-devel
 %else
