@@ -2,7 +2,7 @@
 
 Name:		megamek
 Version:	0.32.2
-Release:	%mkrel 0.0.3
+Release:	%mkrel 0.0.4
 Epoch:		0
 Summary:	Portable, network-enabled BattleTech engine
 
