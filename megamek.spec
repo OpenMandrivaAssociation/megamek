@@ -1,15 +1,16 @@
 %define gcj_support 1
 
 Name:		megamek
-Version:	0.32.2
-Release:	%mkrel 0.0.4
+Version:	0.35.22
+Release:	%mkrel 0.1
 Epoch:		0
 Summary:	Portable, network-enabled BattleTech engine
 
 Group:		Development/Java
 License:	GPL
 URL:		http://megamek.sourceforge.net/
-Source0:	http://ovh.dl.sourceforge.net/megamek/MegaMek-v%{version}.zip
+Source0:	http://sourceforge.net/projects/megamek/files/development/snapshot%202011-03-02/%{name}-%{version}-source.tar.gz
+# Source0:	http://ovh.dl.sourceforge.net/megamek/MegaMek-v%{version}.zip
 # converted from data/images/misc/megamek-icon.gif
 Source1:	megamek-icon.png
 Patch0:		megamek-directories.patch
@@ -24,6 +25,7 @@ BuildRequires:		java-devel
 BuildArch:		noarch
 %endif
 BuildRequires:		java-rpmbuild
+BuildRequires:		java-3d
 Requires(post):		desktop-file-utils
 Requires(postun):	desktop-file-utils
 Requires:		jpackage-utils
@@ -34,8 +36,8 @@ MegaMek is a community effort to implement the Classic BattleTech
 rules in an operating-system-agnostic, network-enabled manner.
 
 %prep
-%setup -q -n %{name}
-%patch0 -p0
+%setup -q -c -n %{name}
+# %patch0 -p0
 # remove included binaries and rebuild everything from source
 rm -f MegaMek.exe MegaMek.jar
 rm -f lib/TinyXML.jar lib/retroweaver-rt.jar
@@ -202,5 +204,3 @@ rm -rf $RPM_BUILD_ROOT
 %dir %attr(-,root,root) %{_libdir}/gcj/%{name}
 %attr(-,root,root) %{_libdir}/gcj/%{name}/megamek.jar.*
 %endif
-
-
