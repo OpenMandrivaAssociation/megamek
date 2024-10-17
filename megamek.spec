@@ -8,7 +8,7 @@ Summary:	Portable, network-enabled BattleTech engine
 
 Group:		Development/Java
 License:	GPL
-URL:		http://megamek.sourceforge.net/
+URL:		https://megamek.sourceforge.net/
 Source0:	http://sourceforge.net/projects/megamek/files/development/snapshot%202011-03-02/%{name}-%{version}-source.tar.gz
 # Source0:	http://ovh.dl.sourceforge.net/megamek/MegaMek-v%{version}.zip
 # converted from data/images/misc/megamek-icon.gif
